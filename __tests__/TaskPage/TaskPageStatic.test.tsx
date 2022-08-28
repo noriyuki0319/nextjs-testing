@@ -7,8 +7,8 @@ import { setupServer } from 'msw/node'
 
 initTestHelpers()
 
-const handlers = [
-  rest.get('https://jsonplaceholder.typicode.com/posts/', (req, res, ctx) => {
+const server = setupServer(
+  rest.get('https://jsonplaceholder.typicode.com/todos/', (req, res, ctx) => {
     const query = req.url.searchParams
     const _limit = query.get('_limit')
 
@@ -17,24 +17,23 @@ const handlers = [
         ctx.status(200),
         ctx.json([
           {
-            userId: 1,
-            id: 1,
-            title: 'dummy title 1',
-            body: 'dummy body 1'
+            userId: 3,
+            id: 3,
+            title: 'Static task C',
+            completed: true
           },
           {
-            userId: 2,
-            id: 2,
-            title: 'dummy title 2',
-            body: 'dummy body 2'
+            userId: 4,
+            id: 4,
+            title: 'Static task D',
+            completed: false
           }
         ])
       )
     }
   })
-]
+)
 
-const server = setupServer(...handlers)
 beforeAll(() => {
   server.listen()
 })
@@ -46,14 +45,14 @@ afterAll(() => {
   server.close()
 })
 
-describe('Blog page', () => {
-  it('Should render the list of blogs pre-fetched by getStaticProps', async () => {
+describe('Todo page / getStaticProps', () => {
+  it('Should render the list of tasks pre-fetched by getStaticProps', async () => {
     const { page } = await getPage({
-      route: '/blog-page'
+      route: '/task-page'
     })
     render(page)
-    expect(await screen.findByText('blog page')).toBeInTheDocument()
-    expect(screen.getByText('dummy title 1')).toBeInTheDocument()
-    expect(screen.getByText('dummy title 2')).toBeInTheDocument()
+    expect(await screen.findByText('todos page')).toBeInTheDocument()
+    expect(screen.getByText('3: Static task C')).toBeInTheDocument()
+    expect(screen.getByText('4: Static task D')).toBeInTheDocument()
   })
 })

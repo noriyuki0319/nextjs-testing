@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import Post from '../components/Post'
-import { POST } from '../types/Types'
+import Post from 'src/components/Post'
+import { POST } from 'src/types/Types'
 
 describe('Post component with given props', () => {
   let dummyProps: POST

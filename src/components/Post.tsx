@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { POST } from '../types/Types'
+import { POST } from 'src/types/Types'
 
 const Post: FC<POST> = ({ id, title }) => {
   return (

@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import Layout from '../components/Layout'
-import { getAllPostData } from '../lib/fetch'
-import Post from '../components/Post'
+import Layout from 'src/components/Layout'
+import { getAllPostData } from 'src/lib/fetch'
+import Post from 'src/components/Post'
 import { GetStaticProps } from 'next'
-import { POST } from '../types/Types'
+import { POST } from 'src/types/Types'
 
 interface STATICPROPS {
   posts: POST[]
@@ -22,6 +22,6 @@ export default BlogPage
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllPostData()
   return {
-    props: { posts },
+    props: { posts }
   }
 }

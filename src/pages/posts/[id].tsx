@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Layout from '../../components/Layout'
-import { getAllPostIds, getPostData } from '../../lib/fetch'
-import { POST } from '../../types/Types'
+import Layout from 'src/components/Layout'
+import { getAllPostIds, getPostData } from 'src/lib/fetch'
+import { POST } from 'src/types/Types'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { FC } from 'react'
 
